@@ -77,6 +77,27 @@ public class ProdutosDAO {
             return null;
         }
     }
+    
+           public void venderProduto(int id){
+          /* Altera um produto para status de vendido */
+        conn = new conectaDAO().connectDB();
+        String sql = "UPDATE produtos SET status=? where ID=?";
+        
+        try{
+            PreparedStatement st = this.conn.prepareStatement(sql);
+            st.setString(1, "Vendido");
+            st.setInt(2,id);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso.", "Sucesso", 1);
+            
+        }
+        catch(Exception ex){
+            System.out.println("ERRO: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERRO", 1);
+            
+        }
+
+    }
 
     }
     
